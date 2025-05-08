@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'docker build -t your-dockerhub/api-server ./api-server'
+                sh 'docker build -t your-dockerhub/control-plane ./control-plane'
+                sh 'docker build -t your-dockerhub/storage-node-1 ./storage-node/node1'
+                sh 'docker build -t your-dockerhub/storage-node-2 ./storage-node/node2'
+                sh 'docker build -t your-dockerhub/storage-node-3 ./storage-node/node3'
+            }
+        }
+
+        stage('Push to DockerHub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+                    sh 'docker push your-dockerhub/api-server'
+                    sh 'docker push your-dockerhub/control-plane'
+                    sh 'docker push your-dockerhub/storage-node-1'
+                    sh 'docker push your-dockerhub/storage-node-2'
+                    sh 'docker push your-dockerhub/storage-node-3'
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f k8s/'
+            }
+        }
+    }
+}
