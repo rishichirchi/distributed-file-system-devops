@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: storage-node-2
-        image: your-dockerhub/storage-node-2
+        image: rishichirchi/storage-node-2:latest
         ports:
         - containerPort: 5002
 ---

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: control-plane
-        image: your-dockerhub/control-plane
+        image: rishichirchi/control-plane:latest
         ports:
         - containerPort: 4000
 ---

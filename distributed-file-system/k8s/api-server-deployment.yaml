@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-server
-        image: your-dockerhub/api-server
+        image: rishichirchi/api-server:latest
         ports:
         - containerPort: 3000
 ---

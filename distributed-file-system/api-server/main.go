@@ -11,8 +11,8 @@ import (
 	"net/http"
 )
 
-var controlPlaneURL = "http://localhost:5000"
-var storageNodes = []string{"http://localhost:6001", "http://localhost:6002", "http://localhost:6003"}
+var controlPlaneURL = "http://control-plane:5000"
+var storageNodes = []string{"http://storage-node-1:6001","http://storage-node-2:6002","http://storage-node-3:6003"}
 
 func splitFile(file []byte) [][]byte {
 	chunkSize := len(file) / 3

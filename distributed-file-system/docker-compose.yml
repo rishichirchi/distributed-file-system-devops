@@ -3,26 +3,26 @@ services:
   control-plane:
     build: ./control-plane
     ports:
-      - "4000:4000"
+      - "4000:5000"
 
   api-server:
     build: ./api-server
     ports:
-      - "3000:3000"
+      - "3000:7000"
     depends_on:
       - control-plane
 
   storage-node-1:
     build: ./storage-node/node1
     ports:
-      - "5001:5001"
+      - "5001:6001"
 
   storage-node-2:
     build: ./storage-node/node2
     ports:
-      - "5002:5002"
+      - "5002:6002"
 
   storage-node-3:
     build: ./storage-node/node3
     ports:
-      - "5003:5003"
+      - "5003:6003"

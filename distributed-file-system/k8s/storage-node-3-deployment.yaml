@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: storage-node-3
-        image: your-dockerhub/storage-node-3
+        image: rishichirchi/storage-node-3:latest
         ports:
         - containerPort: 5003
 ---
