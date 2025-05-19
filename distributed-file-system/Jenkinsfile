@@ -4,23 +4,23 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t your-dockerhub/api-server ./api-server'
-                sh 'docker build -t your-dockerhub/control-plane ./control-plane'
-                sh 'docker build -t your-dockerhub/storage-node-1 ./storage-node/node1'
-                sh 'docker build -t your-dockerhub/storage-node-2 ./storage-node/node2'
-                sh 'docker build -t your-dockerhub/storage-node-3 ./storage-node/node3'
+                sh 'docker build -t rishichirchi/api-server ./api-server'
+                sh 'docker build -t rishichirchi/control-plane ./control-plane'
+                sh 'docker build -t rishichirchi/storage-node-1 ./storage-node/node1'
+                sh 'docker build -t rishichirchi/storage-node-2 ./storage-node/node2'
+                sh 'docker build -t rishichirchi/storage-node-3 ./storage-node/node3'
             }
         }
 
         stage('Push to DockerHub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'rishichirchi', passwordVariable: 'Do@rishi04')]) {
                     sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
-                    sh 'docker push your-dockerhub/api-server'
-                    sh 'docker push your-dockerhub/control-plane'
-                    sh 'docker push your-dockerhub/storage-node-1'
-                    sh 'docker push your-dockerhub/storage-node-2'
-                    sh 'docker push your-dockerhub/storage-node-3'
+                    sh 'docker push rishichirchi/api-server'
+                    sh 'docker push rishichirchi/control-plane'
+                    sh 'docker push rishichirchi/storage-node-1'
+                    sh 'docker push rishichirchi/storage-node-2'
+                    sh 'docker push rishichirchi/storage-node-3'
                 }
             }
         }
