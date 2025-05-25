@@ -1,15 +1,12 @@
 pipeline {
     agent any
     environment {
-        KUBECONFIG = "/home/rishi/.kube/config"
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
-
     stages {
         stage('Deploy to Kubernetes') {
             steps {
-                sh '''
-                   sudo kubectl apply -f ./k8s/
-                '''
+                sh 'kubectl apply -f ./k8s/ --validate=false'
             }
         }
     }
