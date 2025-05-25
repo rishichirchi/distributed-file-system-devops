@@ -2,11 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Start Minikube') {
-            steps {
-                sh 'minikube start'
-            }
-        }
+        // stage('Start Minikube') {
+        //     steps {
+        //         sh '''
+        //             minikube delete || true
+        //             minikube start --driver=docker
+        //         '''
+        //     }
+        // }
 
         // stage('Build') {
         //     steps {
