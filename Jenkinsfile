@@ -8,8 +8,6 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh '''
-                    minikube update-context
-                    kubectl config use-context minikube
                     kubectl apply -f ./k8s/
                 '''
             }
